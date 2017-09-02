@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "app": "node app/app.js",
     "test": "mocha test/fb.js"
   },
   "author": "Harald",

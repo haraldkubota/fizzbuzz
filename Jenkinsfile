@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { node { label 'nodeLabelName' } }
   stages {
     stage('Test') {
       steps {
@@ -9,11 +9,19 @@ pipeline {
             
           },
           "Run": {
-            sh '''pwd
+            sh '''npm test
 '''
             
           }
         )
+      }
+    }
+  stage('Run') {
+    steps {
+      "Run": {
+        sh '''npm run app
+'''
+        }
       }
     }
   }
