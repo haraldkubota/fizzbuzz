@@ -1,31 +1,44 @@
-pipeline {
-  agent any
-  stages {
+node('staging') {
+    stage('Initialize'){
+        echo 'Initializing...'
+        def node = tool name: 'Node-8.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${node}/bin:${env.PATH}"
+
+        sh "node -v"
+
+        // set environment variables
+        env.VARIABLE_1="10"
+        env.VARIABLE_2="7"
+    }
+
+    stage('Checkout') {
+        echo 'Getting source code...'
+        checkout scm
+    }
+
+    stage('PM2 Install') {
+        echo 'Installing PM2 to run application as daemon...'
+        sh "npm install pm2 -g"
+    }
+
+    stage('Build') {
+        echo 'Building dependencies...'
+        sh 'npm i'
+    }
+
     stage('Test') {
-      steps {
-        parallel(
-          "Test": {
-            isUnix()
-            
-          },
-          "Run": {
-            sh '''npm test
-'''
-            
-          }
-        )
-      }
+        echo 'Testing...'
+        sh 'npm test'
     }
-  stage('Run') {
-    steps {
-      "Run": {
-        sh '''npm run app
-'''
-        }
-      }
+
+    stage('Run Application') {
+        echo 'Stopping old process to run new process...'
+        sh '''
+        # show our env variables
+        env
+
+        npm run pm2-stop
+        npm run pm2-start
+        '''
     }
-  }
-  environment {
-    MYENV = 'ThisIsMyEnvironmentVariable'
-  }
 }
