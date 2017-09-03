@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    stages {
         stage('Checkout') {
             echo 'Getting source code...'
             checkout scm
@@ -21,6 +21,6 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-    
+    }
 }
 
