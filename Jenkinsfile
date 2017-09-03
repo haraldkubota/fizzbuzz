@@ -2,10 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Checkout') {
-            echo 'Getting source code...'
-            checkout scm
+            steps {
+                echo 'Getting source code...'
+                checkout scm
+            }
         }
-
         stage('Build') {
             steps {
                 echo 'Building..'
