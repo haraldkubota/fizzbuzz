@@ -37,8 +37,7 @@ node('staging') {
         # show our env variables
         env
 
-        npm run pm2-stop
-        npm run pm2-start
+        npm run app
         '''
     }
 }
