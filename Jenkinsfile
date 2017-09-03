@@ -9,17 +9,24 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'npm i'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh 'npm test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Run') {
+            steps {
+                echo 'Running....'
+                sh 'npm run app'
             }
         }
     }
