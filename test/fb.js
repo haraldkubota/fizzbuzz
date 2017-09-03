@@ -15,7 +15,7 @@ describe('fizzbuzz', function() {
 		expect(fb(5)).to.be.equal('buzz');
 	});
 	it('returns fizz for multiple of 3', function() {
-		expect(fb(6)).to.be.equal('fizzx');
+		expect(fb(6)).to.be.equal('fizz');
 		expect(fb(9)).to.be.equal('fizz');
 	});
 	it('returns buzz for multiple of 5', function() {
