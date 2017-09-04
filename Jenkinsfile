@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm i'
+                sh 'rm -rf node_moduled ; npm i'
             }
         }
         stage('Test') {
