@@ -32,6 +32,7 @@ pipeline {
                 echo 'Running....'
 		nodejs(nodeJSInstallationName: 'Node 10.x') {
                 	sh 'npm run app'
+		}
             }
         }
     }
