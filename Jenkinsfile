@@ -10,15 +10,16 @@ pipeline {
         stage('Build') {
             steps {
 		nodejs(nodeJSInstallationName: 'Node 10.x') {
-			sh 'npm config ls'
+			sh 'rm -rf node_modules; npm i'
 		}
-                sh 'rm -rf node_moduled ; npm i'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'npm test'
+                nodejs(nodeJSInstallationName: 'Node 10.x') {
+			sh 'npm test'
+		}
             }
         }
         stage('Deploy') {
