@@ -9,6 +9,9 @@ pipeline {
         }
         stage('Build') {
             steps {
+		nodejs(nodeJSInstallationName: 'Node 10.x') {
+			sh 'npm config ls'
+		}
                 sh 'rm -rf node_moduled ; npm i'
             }
         }
