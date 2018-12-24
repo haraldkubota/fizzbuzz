@@ -30,7 +30,8 @@ pipeline {
         stage('Run') {
             steps {
                 echo 'Running....'
-                sh 'npm run app'
+		nodejs(nodeJSInstallationName: 'Node 10.x') {
+                	sh 'npm run app'
             }
         }
     }
